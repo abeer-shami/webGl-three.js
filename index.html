@@ -9,7 +9,8 @@
     </style>
   </head>
   <body>
-    <script src="js/three.js"></script>
+      <script src="js/three.js"></script>
+      <script src="js/OrbitControls.js"></script>
 
     <script>
       // create the sence
@@ -33,18 +34,20 @@
         camera.aspect = width / height ;
         camera.updateProjectionMatrix();
       })
+      //add control
+     var controls = new THREE.OrbitControls(camera,renderer.domElement);
       //create the geometry (the cube)
       var geometry = new THREE.BoxGeometry( 1, 1, 1 );
 
-      //color the cube faces
 
+      //color the cube faces
       var cubeMaterials = [
-        new THREE.MeshBasicMaterial({color:0xff8080 , side:THREE.DoubleSide}),
-        new THREE.MeshBasicMaterial({color:0x66b3ff , side:THREE.DoubleSide}),
-        new THREE.MeshBasicMaterial({color:0x80ff80 , side:THREE.DoubleSide}),
-        new THREE.MeshBasicMaterial({color:0xffff4d , side:THREE.DoubleSide}),
-        new THREE.MeshBasicMaterial({color:0xff8000 , side:THREE.DoubleSide}),
-        new THREE.MeshBasicMaterial({color:0xff4da6 , side:THREE.DoubleSide})
+        new THREE.MeshLambertMaterial({color:0xff8080 , side:THREE.DoubleSide}),
+        new THREE.MeshLambertMaterial({color:0x66b3ff , side:THREE.DoubleSide}),
+        new THREE.MeshLambertMaterial({color:0x80ff80 , side:THREE.DoubleSide}),
+        new THREE.MeshLambertMaterial({color:0xffff4d , side:THREE.DoubleSide}),
+        new THREE.MeshLambertMaterial({color:0xff8000 , side:THREE.DoubleSide}),
+        new THREE.MeshLambertMaterial({color:0xff4da6 , side:THREE.DoubleSide})
 
       ];
       //create the material
@@ -53,6 +56,15 @@
       var cube = new THREE.Mesh( geometry, material );
       //add the cube obj to the scene
       scene.add( cube );
+      //light
+      var ambientLight = new THREE.AmbientLight(0xffffff , 1.5);
+      scene.add(ambientLight);
+      //floor
+      var floorGeometry = new THREE.CubeGeometry(10,1,10);
+      var floorMaterial = new THREE.MeshLambertMaterial({color:0xffffff, side:THREE.DoubleSide});
+      var floorCube = new THREE.Mesh(floorGeometry, floorMaterial);
+      floorCube.position.y = -2;
+      scene.add(floorCube);
 
 
       //draw Scene
@@ -63,8 +75,8 @@
       var animate = function () {
         requestAnimationFrame( animate );
 
-        cube.rotation.x += 0.02;
-        cube.rotation.y += 0.02;
+        // cube.rotation.x += 0.02;
+        // cube.rotation.y += 0.02;
 
        render();
       };
