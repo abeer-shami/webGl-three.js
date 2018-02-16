@@ -1,35 +1,58 @@
+<!DOCTYPE html>
 <html>
   <head>
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
     <title>My first three.js app</title>
     <style>
-      body { margin: 0; }
+      body { margin: 0; overflow: hidden;}
       canvas { width: 100%; height: 100% }
     </style>
   </head>
   <body>
     <script src="js/three.js"></script>
     <script>
+      // create the sence
       var scene = new THREE.Scene();
-      var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 1000 );
-
-      var renderer = new THREE.WebGLRenderer();
-      renderer.setSize( window.innerWidth, window.innerHeight );
-      document.body.appendChild( renderer.domElement );
-
-      var geometry = new THREE.BoxGeometry( 1, 1, 1 );
-      var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
-      var cube = new THREE.Mesh( geometry, material );
-      scene.add( cube );
-
+      // add a camera
+      //THREE.PerspectiveCamera(fov, aspect, near, far)
+      var camera = new THREE.PerspectiveCamera( 100, window.innerWidth/window.innerHeight, 0.1, 1000 );
       camera.position.z = 5;
 
+      //add a renderer
+      var renderer = new THREE.WebGLRenderer();
+      renderer.setSize( window.innerWidth, window.innerHeight );
+      // add the renderer element to the DOM so it is in our page
+      document.body.appendChild( renderer.domElement );
+
+      //update the viewport
+      window.addEventListener('resize', function(){
+        var width = window.innerWidth;
+        var height = window.innerHeight;
+        renderer.setSize(width,height);
+        camera.aspect = width / height ;
+        camera.updateProjectionMatrix();
+      })
+      //create the geometry (the cube)
+      var geometry = new THREE.BoxGeometry( 1, 1, 1 );
+      //add a mesh
+      var cube = new THREE.Mesh( geometry, material );
+      //add the cube obj to the scene
+      scene.add( cube );
+
+      //create the material
+      var material = new THREE.MeshLambertMaterial( { color: 0xCC0000 } );
+      //draw Scene
+      var render = function(){
+        renderer.render(scene, camera);
+      };
+      // run loop game function(update, render, repeat)
       var animate = function () {
         requestAnimationFrame( animate );
 
-        cube.rotation.x += 0.1;
-        cube.rotation.y += 0.1;
+        cube.rotation.x += 0.02;
+        cube.rotation.y += 0.02;
 
-        renderer.render(scene, camera);
+       render();
       };
 
       animate();
