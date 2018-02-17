@@ -61,11 +61,31 @@
       scene.add(ambientLight);
       //floor
       var floorGeometry = new THREE.CubeGeometry(10,1,10);
-      var floorMaterial = new THREE.MeshLambertMaterial({color:0xffffff, side:THREE.DoubleSide});
+      var floorMaterial = new THREE.MeshLambertMaterial({color:0x000000, side:THREE.DoubleSide});
       var floorCube = new THREE.Mesh(floorGeometry, floorMaterial);
-      floorCube.position.y = -2;
+      floorCube.position.y = -5;
       scene.add(floorCube);
 
+      //leftwall
+      var leftWallGeometry = new THREE.CubeGeometry(1, 10, 10);
+      var leftWallMaterial = new THREE.MeshLambertMaterial({color:0xffffff, side:THREE.DoubleSide});
+      var leftWallCube = new THREE.Mesh(leftWallGeometry, leftWallMaterial);
+      leftWallCube.position.x = -5;
+      scene.add(leftWallCube);
+
+      //rightwall
+      var rightWallGeometry = new THREE.CubeGeometry(1, 10, 10);
+      var rightWallMaterial = new THREE.MeshLambertMaterial({color:0xffffff, side:THREE.DoubleSide});
+      var rightWallCube = new THREE.Mesh(rightWallGeometry, rightWallMaterial);
+      rightWallCube.position.x = 5;
+      scene.add(rightWallCube);
+
+      //ceiling
+      var ceilingGeometry = new THREE.CubeGeometry(10,1,10);
+      var ceilingMaterial = new THREE.MeshLambertMaterial({color:0x990000, side:THREE.DoubleSide});
+      var ceilingCube = new THREE.Mesh(ceilingGeometry, ceilingMaterial);
+      ceilingCube.position.y = 5;
+      scene.add(ceilingCube);
 
       //draw Scene
       var render = function(){
