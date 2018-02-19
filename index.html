@@ -38,16 +38,16 @@
       //add control
      var controls = new THREE.OrbitControls(camera,renderer.domElement);
 
-     var geometry = new THREE.CubeGeometry( 1200, 1200, 1200 );
+     var geometry = new THREE.CubeGeometry( 1000, 1000, 1000 );
 
      //color the cube faces
      var skyBoxMaterials = [
-       new THREE.MeshBasicMaterial({map:new THREE.TextureLoader().load("img/sky-bc.jpg") , side:THREE.DoubleSide}),
-       new THREE.MeshBasicMaterial({map:new THREE.TextureLoader().load("img/sky-fr.jpg") , side:THREE.DoubleSide}),
-       new THREE.MeshBasicMaterial({map:new THREE.TextureLoader().load("img/sky-up.jpg") , side:THREE.DoubleSide}),
-       new THREE.MeshBasicMaterial({map:new THREE.TextureLoader().load("img/sky-dw.jpg") , side:THREE.DoubleSide}),
-       new THREE.MeshBasicMaterial({map:new THREE.TextureLoader().load("img/sky-ri.jpg") , side:THREE.DoubleSide}),
-       new THREE.MeshBasicMaterial({map:new THREE.TextureLoader().load("img/sky-le.jpg") , side:THREE.DoubleSide})
+       new THREE.MeshBasicMaterial({map:new THREE.TextureLoader().load("img/posx.jpg") , side:THREE.DoubleSide}),
+       new THREE.MeshBasicMaterial({map:new THREE.TextureLoader().load("img/negx.jpg") , side:THREE.DoubleSide}),
+       new THREE.MeshBasicMaterial({map:new THREE.TextureLoader().load("img/posy.jpg") , side:THREE.DoubleSide}),
+       new THREE.MeshBasicMaterial({map:new THREE.TextureLoader().load("img/negy.jpg") , side:THREE.DoubleSide}),
+       new THREE.MeshBasicMaterial({map:new THREE.TextureLoader().load("img/posz.jpg") , side:THREE.DoubleSide}),
+       new THREE.MeshBasicMaterial({map:new THREE.TextureLoader().load("img/negz.jpg") , side:THREE.DoubleSide})
 
      ];
      //create the material
@@ -56,12 +56,12 @@
      var skyBox = new THREE.Mesh( geometry, skyBoxMaterial );
      scene.add(skyBox);
      //create a grid
-     var grid = new THREE.GridHelper(50, 5);
-     var color = new THREE.Color("rgb(255, 0, 0)");
-     grid.setColors(color, 0x000000);
-     scene.add(grid);
+     // var grid = new THREE.GridHelper(50, 5);
+     // var color = new THREE.Color("rgb(255, 0, 0)");
+     // grid.setColors(color, 0x000000);
+     // scene.add(grid);
       //create the geometry (the cube)
-      var geometry = new THREE.BoxGeometry( 2, 2, 2 );
+      var geometry = new THREE.BoxGeometry( 3, 3, 3 );
 
       //color the cube faces
       var cubeMaterials = [
@@ -80,13 +80,13 @@
       document.addEventListener('keyup', keyboard , false);
 
       //create a plane
-      var planeGeometry = new THREE.PlaneGeometry(30, 30, 30);
-      var planeMaterial = new THREE.MeshLambertMaterial({color:0x000000,side:THREE.DoubleSide});
-      var plane = new THREE.Mesh(planeGeometry, planeMaterial);
-      plane.rotation.x = -.5 * Math.PI;
-      scene.add(plane);
+      // var planeGeometry = new THREE.PlaneGeometry(30, 30, 30);
+      // var planeMaterial = new THREE.MeshLambertMaterial({color:0x000000,side:THREE.DoubleSide});
+      // var plane = new THREE.Mesh(planeGeometry, planeMaterial);
+      // plane.rotation.x = -.5 * Math.PI;
+      // scene.add(plane);
 
-      cube.position.x = -0.5;
+      cube.position.x = 0.5;
       cube.position.y = 2.5;
       cube.position.z = 2.5;
       //add the cube obj to the scene
