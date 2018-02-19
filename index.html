@@ -11,6 +11,7 @@
   <body>
       <script src="js/three.js"></script>
       <script src="js/OrbitControls.js"></script>
+      <script src="js/JSONLoader.js"></script>
 
     <script>
       // create the sence
@@ -112,7 +113,15 @@
       rightWallCube.position.set(15, -10, 0);
       scene.add(ceilingCube);
 
-      
+//ObjectLoader
+      var loader = new THREE.JSONLoader( );
+      loader.load('models/Female02_slim.json',handel_load)
+       function handel_load(geometry , materials){
+         var mesh = new THREE.Mesh(geometry , materials);
+         scene.add(mesh)
+         mesh.postion.y = 10
+        }
+
       function keyboard(event){
         var speed = 2;
         if(event.keyCode == 65){ //A
