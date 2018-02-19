@@ -38,16 +38,16 @@
       //add control
      var controls = new THREE.OrbitControls(camera,renderer.domElement);
 
-     var geometry = new THREE.CubeGeometry( 1000, 1000, 1000 );
+     var geometry = new THREE.CubeGeometry( 1200, 1200, 1200 );
 
      //color the cube faces
      var skyBoxMaterials = [
-       new THREE.MeshBasicMaterial({map:new THREE.TextureLoader().load("img/skybox-f.png") , side:THREE.DoubleSide}),
-       new THREE.MeshBasicMaterial({map:new THREE.TextureLoader().load("img/skybox-b.png") , side:THREE.DoubleSide}),
-       new THREE.MeshBasicMaterial({map:new THREE.TextureLoader().load("img/skybox-u.png") , side:THREE.DoubleSide}),
-       new THREE.MeshBasicMaterial({map:new THREE.TextureLoader().load("img/skybox-d.png") , side:THREE.DoubleSide}),
-       new THREE.MeshBasicMaterial({map:new THREE.TextureLoader().load("img/skybox-r.png") , side:THREE.DoubleSide}),
-       new THREE.MeshBasicMaterial({map:new THREE.TextureLoader().load("img/skybox-l.png") , side:THREE.DoubleSide})
+       new THREE.MeshBasicMaterial({map:new THREE.TextureLoader().load("img/sky-bc.jpg") , side:THREE.DoubleSide}),
+       new THREE.MeshBasicMaterial({map:new THREE.TextureLoader().load("img/sky-fr.jpg") , side:THREE.DoubleSide}),
+       new THREE.MeshBasicMaterial({map:new THREE.TextureLoader().load("img/sky-up.jpg") , side:THREE.DoubleSide}),
+       new THREE.MeshBasicMaterial({map:new THREE.TextureLoader().load("img/sky-dw.jpg") , side:THREE.DoubleSide}),
+       new THREE.MeshBasicMaterial({map:new THREE.TextureLoader().load("img/sky-ri.jpg") , side:THREE.DoubleSide}),
+       new THREE.MeshBasicMaterial({map:new THREE.TextureLoader().load("img/sky-le.jpg") , side:THREE.DoubleSide})
 
      ];
      //create the material
@@ -84,14 +84,13 @@
       var planeMaterial = new THREE.MeshLambertMaterial({color:0x000000,side:THREE.DoubleSide});
       var plane = new THREE.Mesh(planeGeometry, planeMaterial);
       plane.rotation.x = -.5 * Math.PI;
-      plane.receiveShadow = true;
       scene.add(plane);
 
-      cube.position.x = 0.5;
+      cube.position.x = -0.5;
       cube.position.y = 2.5;
       cube.position.z = 2.5;
       //add the cube obj to the scene
-      cube.castShadow = true;
+      // cube.castShadow = true;
       scene.add( cube );
       //light
       var ambientLight = new THREE.AmbientLight(0xffffff , 1);
@@ -127,7 +126,7 @@
       scene.add(ceilingCube);
 
       function keyboard(event){
-        var speed = 1;
+        var speed = 2;
         if(event.keyCode == 65){ //A
           cube.position.x +=speed;
         }
